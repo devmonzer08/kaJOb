@@ -756,8 +756,8 @@ async def stop_aljoker(event):
 #ها هم تريد تخمط بمحرم ؟ روح شوفلك موكب واضرب زنجيل احسن من ماتخمط
 @l313l.on(events.NewMessage(incoming=True))
 async def Hussein(event):
-    if event.is_group and event.sender_id == bot.uid:
-        if gvarstatus("Emoji_Premium"):
+    if gvarstatus("Emoji_Premium"):
+        if event.is_group and event.sender_id == bot.uid:
             chat_id = event.chat.id
             sender_id = event.sender_id
             if sender_id != 705475246:
