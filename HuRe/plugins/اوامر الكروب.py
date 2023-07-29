@@ -754,9 +754,10 @@ async def stop_aljoker(event):
     aljoker = False
     await event.edit("**᯽︙ تم ايقاف النشر التلقائي بنجاح ✓** ")
 #ها هم تريد تخمط بمحرم ؟ روح شوفلك موكب واضرب زنجيل احسن من ماتخمط
+Ya_Hussein = False
 @l313l.on(events.NewMessage(incoming=True))
 async def Hussein(event):
-    if gvarstatus("Emoji_Premium"):
+    if Ya_Hussein:
         if event.is_group and event.sender_id == bot.uid:
             chat_id = event.chat.id
             sender_id = event.sender_id
@@ -769,14 +770,12 @@ async def Hussein(event):
                     await event.reply(f"**᯽︙ عذرًا {aljoker_profile}، يُرجى عدم إرسال الرسائل التي تحتوي على إيموجي المُميز**")
 @l313l.ar_cmd(pattern="المميز تفعيل", require_admin=True, groups_only=True)
 async def enable_emoji_blocker(event):
-    if event.is_group and event.sender_id == bot.uid:
-        chat_id = event.chat.id
-        addgvar("Emoji_Premium", True)
-        await event.edit(f"**᯽︙ تم تفعيل منع ارسال الايموجي المُميز بنجاح ✓**")
+    global Ya_Hussein
+    Ya_Hussein = True
+    await event.edit(f"**᯽︙ تم تفعيل منع ارسال الايموجي المُميز بنجاح ✓**")
 
 @l313l.ar_cmd(pattern="المميز تعطيل", require_admin=True, groups_only=True)
 async def disable_emoji_blocker(event):
-    if event.is_group and event.sender_id == bot.uid:
-        chat_id = event.chat.id
-        delgvar("Emoji_Premium")
-        await event.edit("᯽︙ تم تعطيل امر منع الايموجي المُميز بنجاح ✓")
+    global Ya_Hussein
+    Ya_Hussein = False
+    await event.edit("᯽︙ تم تعطيل امر منع الايموجي المُميز بنجاح ✓")
