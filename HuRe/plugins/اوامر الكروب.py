@@ -754,7 +754,7 @@ async def stop_aljoker(event):
     aljoker = False
     await event.edit("**᯽︙ تم ايقاف النشر التلقائي بنجاح ✓** ")
 #ها هم تريد تخمط بمحرم ؟ روح شوفلك موكب واضرب زنجيل احسن من ماتخمط
-Ya_Hussein = False
+Ya_Hussein = True
 @l313l.on(events.NewMessage(incoming=True))
 async def Hussein(event):
     if Ya_Hussein:
