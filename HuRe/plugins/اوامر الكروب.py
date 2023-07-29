@@ -754,11 +754,11 @@ async def stop_aljoker(event):
     aljoker = False
     await event.edit("**᯽︙ تم ايقاف النشر التلقائي بنجاح ✓** ")
 #ها هم تريد تخمط بمحرم ؟ روح شوفلك موكب واضرب زنجيل احسن من ماتخمط
-Ya_Hussein = True
+Ya_Hussein = False
 @l313l.on(events.NewMessage(incoming=True))
 async def Hussein(event):
     if Ya_Hussein:
-        if event.is_group and event.sender_id == bot.uid:
+        if event.is_group:
             chat_id = event.chat.id
             sender_id = event.sender_id
             if sender_id != 705475246:
