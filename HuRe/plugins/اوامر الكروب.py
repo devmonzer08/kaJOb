@@ -755,27 +755,31 @@ async def stop_aljoker(event):
     await event.edit("**᯽︙ تم ايقاف النشر التلقائي بنجاح ✓** ")
 #ها هم تريد تخمط بمحرم ؟ روح شوفلك موكب واضرب زنجيل احسن من ماتخمط
 Ya_Hussein = False
+active_joker = []
 @l313l.on(events.NewMessage(incoming=True))
 async def Hussein(event):
-    if Ya_Hussein:
-        if event.is_group:
-            chat_id = event.chat.id
-            sender_id = event.sender_id
-            if sender_id != 705475246:
-                if isinstance(event.message.entities, list) and any(isinstance(entity, MessageEntityCustomEmoji) for entity in event.message.entities):
-                    await event.delete()
-                    sender = await event.get_sender()
-                    aljoker_entity = await l313l.get_entity(sender.id)
-                    aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
-                    await event.reply(f"**᯽︙ عذرًا {aljoker_profile}، يُرجى عدم إرسال الرسائل التي تحتوي على إيموجي المُميز**")
+    if not Ya_Hussein:
+        return
+    if event.is_private or event.chat_id not in active_joker:
+        return
+    sender_id = event.sender_id
+    if sender_id != 705475246:
+        if isinstance(event.message.entities, list) and any(isinstance(entity, MessageEntityCustomEmoji) for entity in event.message.entities):
+            await event.delete()
+            sender = await event.get_sender()
+            aljoker_entity = await l313l.get_entity(sender.id)
+            aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
+            await event.reply(f"**᯽︙ عذرًا {aljoker_profile}، يُرجى عدم إرسال الرسائل التي تحتوي على إيموجي المُميز**")
 @l313l.ar_cmd(pattern="المميز تفعيل", require_admin=True, groups_only=True)
 async def enable_emoji_blocker(event):
     global Ya_Hussein
     Ya_Hussein = True
+    active_joker.append(event.chat_id)
     await event.edit(f"**᯽︙ تم تفعيل منع ارسال الايموجي المُميز بنجاح ✓**")
 
 @l313l.ar_cmd(pattern="المميز تعطيل", require_admin=True, groups_only=True)
 async def disable_emoji_blocker(event):
     global Ya_Hussein
     Ya_Hussein = False
+    active_aljoker.remove(event.chat_id)
     await event.edit("᯽︙ تم تعطيل امر منع الايموجي المُميز بنجاح ✓")
