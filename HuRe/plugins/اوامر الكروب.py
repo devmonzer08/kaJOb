@@ -771,21 +771,26 @@ async def Hussein(event):
             aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
             await event.reply(f"**᯽︙ عذرًا {aljoker_profile}، يُرجى عدم إرسال الرسائل التي تحتوي على إيموجي المُميز**")
 @l313l.ar_cmd(pattern="المميز تفعيل")
-async def enable_emoji_blocker(event):
+async def disable_emoji_blocker(event):
     global Ya_Hussein
-    if Ya_Hussein and event.chat_id in active_joker:
+    if event.chat_id in active_joker:
         Ya_Hussein = True
         active_joker.append(event.chat_id)
-        await event.edit(f"**᯽︙ تم تفعيل منع ارسال الايموجي المُميز بنجاح ✓**")
+        await event.edit("**᯽︙ تم تفعيل امر منع الايموجي المُميز بنجاح**")
     else:
-        await event.edit("**᯽︙ امر منع الايموجي مُفعل على هذه المجموعة بالفعل**")
-
+        if Ya_Hussein:
+            await event.edit("᯽︙ الأمر معطّل بالفعل")
+        else:
+            await event.edit("᯽︙ الأمر معطّل حاليًا")
 @l313l.ar_cmd(pattern="المميز تعطيل")
 async def disable_emoji_blocker(event):
     global Ya_Hussein
-    if Ya_Hussein and event.chat_id in active_joker:
+    if event.chat_id in active_joker:
         Ya_Hussein = False
         active_joker.remove(event.chat_id)
         await event.edit("᯽︙ تم تعطيل امر منع الايموجي المُميز")
     else:
-        await event.edit("᯽︙ الأمر معطّل بالفعل")
+        if Ya_Hussein:
+            await event.edit("᯽︙ الأمر معطّل بالفعل")
+        else:
+            await event.edit("᯽︙ الأمر معطّل حاليًا")
