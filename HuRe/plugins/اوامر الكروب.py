@@ -773,7 +773,7 @@ async def Hussein(event):
 @l313l.ar_cmd(pattern="المميز تفعيل")
 async def enable_emoji_blocker(event):
     global Ya_Hussein
-    if event.chat_id in active_joker:
+    if Ya_Hussein and event.chat_id in active_joker:
         Ya_Hussein = True
         active_joker.append(event.chat_id)
         await event.edit(f"**᯽︙ تم تفعيل منع ارسال الايموجي المُميز بنجاح ✓**")
@@ -783,9 +783,9 @@ async def enable_emoji_blocker(event):
 @l313l.ar_cmd(pattern="المميز تعطيل")
 async def disable_emoji_blocker(event):
     global Ya_Hussein
-    if event.chat_id in active_joker:
+    if Ya_Hussein and event.chat_id in active_joker:
         Ya_Hussein = False
         active_joker.remove(event.chat_id)
-        await event.edit("**᯽︙ تم تعطيل امر منع الايموجي المُميز**")
+        await event.edit("᯽︙ تم تعطيل امر منع الايموجي المُميز")
     else:
-        await event.edit("**᯽︙ امر منع الايموجي مُعطل على هذه المجموعة بالفعل**")
+        await event.edit("᯽︙ الأمر معطّل بالفعل")
