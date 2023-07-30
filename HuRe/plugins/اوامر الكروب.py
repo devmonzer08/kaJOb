@@ -770,38 +770,16 @@ async def Hussein(event):
             aljoker_entity = await l313l.get_entity(sender.id)
             aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
             await event.reply(f"**᯽︙ عذرًا {aljoker_profile}، يُرجى عدم إرسال الرسائل التي تحتوي على إيموجي المُميز**")
-@l313l.ar_cmd(
-    pattern="المميز تفعيل$",
-    command=("المميز تفعيل", plugin_category),
-    info={
-        "header": "",
-        "description": "",
-        "usage": [
-            "{tr}المميز تفعيل",
-        ],
-    },
-    require_admin=True,
-)
+@l313l.ar_cmd(pattern="المميز تفعيل")
 async def enable_emoji_blocker(event):
     global Ya_Hussein
     Ya_Hussein = True
     active_joker.append(event.chat_id)
     await event.edit(f"**᯽︙ تم تفعيل منع ارسال الايموجي المُميز بنجاح ✓**")
 
-@l313l.ar_cmd(
-    pattern="المميز تعطيل$",
-    command=("المميز تعطيل", plugin_category),
-    info={
-        "header": "",
-        "description": "",
-        "usage": [
-            "{tr}المميز تعطيل",
-        ],
-    },
-    require_admin=True,
-)
+@l313l.ar_cmd(pattern="المميز تعطيل")
 async def disable_emoji_blocker(event):
     global Ya_Hussein
     Ya_Hussein = False
-    active_aljoker.remove(event.chat_id)
+    active_joker.remove(event.chat_id)
     await event.edit("᯽︙ تم تعطيل امر منع الايموجي المُميز بنجاح ✓")
