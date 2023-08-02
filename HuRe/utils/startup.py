@@ -27,7 +27,8 @@ from ..sql_helper.global_collection import (
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
-LOGS = logging.getLogger("HuRe")
+LOGS = logging.getLogger("aljoker")
+logging.getLogger('telethon').setLevel(logging.WARNING)
 ##Reda hands here
 cmdhr = Config.COMMAND_HAND_LER
 bot = l313l
