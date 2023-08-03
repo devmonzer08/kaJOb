@@ -809,7 +809,7 @@ async def _(event):
                 with open("joker.txt", "w") as log_file:
                     log_file.write(data)
 
-                await event.client.send_file(event.chat_id, "الجوكر.txt", caption="سجل الـ log من Heroku")
+                await event.client.send_file(event.chat_id, "joker.txt", caption="سجل الـ log من Heroku")
 os.remove("joker.txt")
 
 def prettyjson(obj, indent=4, maxlinelength=80):
