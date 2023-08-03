@@ -804,8 +804,8 @@ async def _(event):
                         " يجب التذكر من ان قيمه الفارات التاليه ان تكون بشكل صحيح \nHEROKU_APP_NAME\n HEROKU_API_KEY"
                     )
                 data = app.get_log()
-                with open("الجوكر.txt", "w") as new_file:
-                    new_file.write("")
+                if not os.path.exists("الجوكر.txt"):
+                    open("الجوكر.txt", "w").close()
                 with open("الجوكر.txt", "w") as log_file:
                     log_file.write(data)
 
