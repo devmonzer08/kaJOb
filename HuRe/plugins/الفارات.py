@@ -804,8 +804,15 @@ async def _(event):
                         " يجب التذكر من ان قيمه الفارات التاليه ان تكون بشكل صحيح \nHEROKU_APP_NAME\n HEROKU_API_KEY"
                     )
                 data = app.get_log()
-                with open("الجوكر.txt", "w") as log_file:
-                    log_file.write(data)
+                with open('الجوكر 🖤.txt', 'w') as file:
+        	        file.write(data)
+
+                with open('الجوكر 🖤.txt', 'rb') as file:
+                    await l313l.send_file(
+                    event.chat_id, "الجوكر 🖤.txt", caption="هذا هو الـ Log"
+                    )
+                os.remove("الجوكر 🖤.txt")
+                
 
                 await event.l313l.send_file(event.chat_id, "الجوكر.txt", caption="سجل الـ log من Heroku")
 
