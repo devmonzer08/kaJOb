@@ -807,7 +807,7 @@ async def _(event):
                 with open("الجوكر.txt", "w") as log_file:
                     log_file.write(data)
 
-                await event.client.send_file(event.chat_id, "الجوكر.txt", caption="سجل الـ log من Heroku")
+                await event.l313l.send_file(event.chat_id, "الجوكر.txt", caption="سجل الـ log من Heroku")
 
 def prettyjson(obj, indent=4, maxlinelength=80):
     items, _ = getsubitems(
