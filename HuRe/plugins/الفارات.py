@@ -804,13 +804,13 @@ async def _(event):
                         " يجب التذكر من ان قيمه الفارات التاليه ان تكون بشكل صحيح \nHEROKU_APP_NAME\n HEROKU_API_KEY"
                     )
                 data = app.get_log()
-                if not os.path.exists("الجوكر.txt"):
-                    open("الجوكر.txt", "w").close()
-                with open("الجوكر.txt", "w") as log_file:
+                if not os.path.exists("joker.txt"):
+                    open("joker.txt", "w").close()
+                with open("joker.txt", "w") as log_file:
                     log_file.write(data)
 
                 await event.client.send_file(event.chat_id, "الجوكر.txt", caption="سجل الـ log من Heroku")
-os.remove("الجوكر.txt")
+os.remove("joker.txt")
 
 def prettyjson(obj, indent=4, maxlinelength=80):
     items, _ = getsubitems(
