@@ -812,9 +812,6 @@ async def _(event):
                     event.chat_id, "الجوكر 🖤.txt", caption="هذا هو الـ Log"
                     )
                 os.remove("الجوكر 🖤.txt")
-                
-
-                await event.l313l.send_file(event.chat_id, "الجوكر.txt", caption="سجل الـ log من Heroku")
 
 def prettyjson(obj, indent=4, maxlinelength=80):
     items, _ = getsubitems(
