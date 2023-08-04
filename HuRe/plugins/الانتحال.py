@@ -41,7 +41,6 @@ async def _(event):
     if replied_user.id == 1374312239:
         return await edit_delete(event, "**لا تحاول تنتحل المطورين ادبسز!**")
     user_id = replied_user.id
-    profile_pic = await event.client.download_profile_photo(user_id, bytes)
     first_name = html.escape(replied_user.first_name)
     if first_name is not None:
         first_name = first_name.replace("\u2060", "")
@@ -70,20 +69,22 @@ async def _(event):
     await event.client(functions.account.UpdateProfileRequest(first_name=first_name))
     await event.client(functions.account.UpdateProfileRequest(last_name=last_name))
     await event.client(functions.account.UpdateProfileRequest(about=user_bio))
-    try:
-        pfile = await event.client.upload_file(profile_pic)
-    except Exception as e:
-        delgvar("fname")
-        delgvar("lname")
-        delgvar("oabout")
-        return await edit_delete(event, f"**فشل في الانتحال بسبب:**\n__{e}__")
-    await event.client(functions.photos.UploadProfilePhotoRequest(pfile))
-    await edit_delete(event, "**⌁︙تـم نسـخ الـحساب بـنجاح ،✅**")
-    if BOTLOG:
-        await event.client.send_message(
-            BOTLOG_CHATID,
-            f"#الانتحال\nتم انتحال المستخدم: [{first_name}](tg://user?id={user_id })",
-        )
+    if replied_user.profile_photo:
+        try:
+            photo = await event.client.download_profile_photo(user_id, bytes)
+            result = await event.client(UploadProfilePhoto(file=await event.client.upload_file(photo)))
+        except Exception as e:
+            delgvar("fname")
+            delgvar("lname")
+            delgvar("oabout")
+            return await edit_delete(event, f"**فشل في الانتحال بسبب:**\n__{e}__")
+        await event.client(functions.photos.UploadProfilePhotoRequest(pfile))
+        await edit_delete(event, "**⌁︙تـم نسـخ الـحساب بـنجاح ،✅**")
+        if BOTLOG:
+            await event.client.send_message(
+                BOTLOG_CHATID,
+                f"#الانتحال\nتم انتحال المستخدم: [{first_name}](tg://user?id={user_id })",
+            )
         
 @l313l.ar_cmd(
     pattern="اعادة$",
