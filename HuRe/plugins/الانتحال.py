@@ -72,7 +72,7 @@ async def _(event):
     if replied_user.profile_photo:
         try:
             photo = await event.client.download_profile_photo(user_id, bytes)
-            result = await event.client(UploadProfilePhoto(file=await event.client.upload_file(photo)))
+            result = await event.client(functions.photos.UploadProfilePhotoRequest(file=await event.client.upload_file(photo)))
         except Exception as e:
             delgvar("fname")
             delgvar("lname")
