@@ -41,7 +41,7 @@ async def _(event):
     if replied_user.id == 1374312239:
         return await edit_delete(event, "**لا تحاول تنتحل المطورين ادبسز!**")
     user_id = replied_user.id
-    profile_pic = await event.client.download_profile_photo(user_id, Config.TEMP_DIR)
+    profile_pic = await event.client.download_profile_photo(user_id, bytes)
     first_name = html.escape(replied_user.first_name)
     if first_name is not None:
         first_name = first_name.replace("\u2060", "")
