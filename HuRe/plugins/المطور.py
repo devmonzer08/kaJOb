@@ -64,7 +64,7 @@ progs = [1374312239, 393120911, 705475246, 5564802580]
 async def reda(event):
     if event.reply_to and event.sender_id in progs:
        reply_msg = await event.get_reply_message()
-       owner_id = reply_msg.from_id.user_id
+       owner_id = reply_msg.from_id
        if owner_id == l313l.uid:
            if event.message.message == "حظر من السورس":
                await event.reply("**حاظر مطوري ، لقد تم حظره من استخدام السورس**")
