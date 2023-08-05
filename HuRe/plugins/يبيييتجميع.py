@@ -428,7 +428,7 @@ async def _(event):
         await asyncio.sleep(4)
         list = await l313l(GetHistoryRequest(peer=channel_entity, limit=1, offset_date=None, offset_id=0, max_id=0, min_id=0, add_offset=0, hash=0))
         msgs = list.messages[0]
-        if msgs.message.find('لا يوجد قنوات في الوقت الحالي , قم بتجميع النقاط بطريقة مختلفة') != -1:
+        if msgs.message.find('لا يوجد قنوات حالياً 🤍') != -1:
             await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
             break
         msg_text = msgs.message  # الكود تمت كتابتهُ من قبل سورس الجوكر 
