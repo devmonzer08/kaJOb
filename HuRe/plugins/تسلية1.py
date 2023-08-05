@@ -309,7 +309,7 @@ async def Hussein(event):
         if owner_id == l313l.uid:
             if event.message.message == "شيع الولد":
                 animation_interval = 4
-                animation_ttl = range(1)
+                animation_ttl = range(4)
                 animation_chars = [
                     "**بِسِمٍّ اللّٰه وَبِاَللَّهِ**",
                     "**أَشْهَد أَلَّا إِلَهَ إِلَّا اَللَّه وَحْدَهُ لَا شَرِيكَ لَه**",
