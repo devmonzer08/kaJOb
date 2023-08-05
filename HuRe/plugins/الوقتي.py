@@ -82,7 +82,6 @@ async def digitalpicloop():
         fnt = ImageFont.truetype(jep, 65)
         drawn_text.text((200, 200), current_time, font=fnt, fill=colo)
         img.save(autophoto_path)
-        file = await l313l.upload_file(autophoto_path)
         try:
             if i > 0:
                 await l313l(
@@ -91,7 +90,7 @@ async def digitalpicloop():
                     )
                 )
             i += 1
-            await l313l(functions.photos.UploadProfilePhotoRequest(file))
+            result = await event.l313l(functions.photos.UploadProfilePhotoRequest(file=await event.l313l.upload_file(autophoto_path)))
             os.remove(autophoto_path)
             await asyncio.sleep(60)
         except BaseException:
