@@ -423,7 +423,6 @@ async def _(event):
     await asyncio.sleep(4)
     msg1 = await l313l.get_messages(bot_username6, limit=1)
     await msg1[0].click(0)
-
     chs = 1
     for i in range(100):
         await asyncio.sleep(4)
@@ -432,23 +431,19 @@ async def _(event):
         if msgs.message.find('لا يوجد قنوات في الوقت الحالي , قم بتجميع النقاط بطريقة مختلفة') != -1:
             await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
             break
-        msg_text = msgs.message
+        msg_text = msgs.message  # الكود تمت كتابتهُ من قبل سورس الجوكر 
         if "اشترك فالقناة @" in msg_text:
-            channel_username = msg_text.split('@')[1].split()[0]  # استخراج اسم مستخدم القناة
+            aljoker_channel = msg_text.split('@')[1].split()[0]  # استخراج اسم مستخدم القناة
             try:
-                entity = await l313l.get_entity(channel_username)
+                entity = await l313l.get_entity(aljoker_channel)
                 if entity:
                     await l313l(JoinChannelRequest(entity.id))
-                    await event.edit(f"تم الانضمام إلى القناة: @{channel_username}")
                     await asyncio.sleep(4)
                     msg2 = await l313l.get_messages(bot_username6, limit=1)
                     await msg2[0].click(text='اشتركت ✅')
-                else:
-                    await event.edit(f"لا يمكن العثور على القناة: @{channel_username}")
-            except:
-                await event.edit(f"فشل في الانضمام إلى القناة: @{channel_username}")
-                chs += 1
-                await event.edit(f"القناة رقم {chs}")
+                    chs += 1
+                    await event.edit(f"تم الانظمام الى القناة رقم {chs}")
+                    break
 
     await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
 
