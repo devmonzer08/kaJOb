@@ -440,16 +440,15 @@ async def _(event):
                 if entity:
                     await l313l(JoinChannelRequest(entity.id))
                     await event.edit(f"تم الانضمام إلى القناة: @{channel_username}")
+                    await asyncio.sleep(4)
+                    msg2 = await l313l.get_messages(bot_username6, limit=1)
+                    await msg2[0].click(text='اشتركت ✅')
                 else:
                     await event.edit(f"لا يمكن العثور على القناة: @{channel_username}")
             except:
                 await event.edit(f"فشل في الانضمام إلى القناة: @{channel_username}")
-        else:
-            await event.edit("الرسالة لا تحتوي على رابط للقناة.")
-            msg2 = await l313l.get_messages(bot_username6, limit=1)
-            await msg2[0].click(text='اشتركت ✅')
-            chs += 1
-            await event.edit(f"القناة رقم {chs}")
+                chs += 1
+                await event.edit(f"القناة رقم {chs}")
 
     await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
 
