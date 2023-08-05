@@ -445,13 +445,13 @@ async def _(event):
             await event.edit("**᯽︙لم يتم العثور على اسم قناة في الرسالة**")
             chs += 1
             await event.edit(f"تم الانضمام في {chs} قناة")
-        except:
-            msg2 = await l313l.get_messages(bot_username5, limit=1)
-            await msg2[0].click(text='اشتركت ✅')
-            chs += 1
-            await event.edit(f"القناة رقم {chs}")
+            except:
+                msg2 = await l313l.get_messages(bot_username5, limit=1)
+                await msg2[0].click(text='اشتركت ✅')
+                chs += 1
+                await event.edit(f"القناة رقم {chs}")
 
-    await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
+        await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
 
 @l313l.ar_cmd(pattern="راتب وعد(?:\s|$)([\s\S]*)")
 async def hussein(event):
