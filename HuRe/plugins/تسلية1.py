@@ -319,5 +319,5 @@ async def Hussein(event):
                 ]
                 for i in animation_ttl:
                     await asyncio.sleep(animation_interval)
-                    await event.reply(animation_chars[i % 4], reply_to=reply_msg)
+                    await event.reply(animation_text, reply_to=reply_msg)
 
