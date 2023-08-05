@@ -432,26 +432,26 @@ async def _(event):
         if msgs.message.find('لا يوجد قنوات في الوقت الحالي , قم بتجميع النقاط بطريقة مختلفة') != -1:
             await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
             break
-        message = event.message.message
-        channel_username = re.search(r"@(\w+)", message)
-        if channel_username:
+        msg_text = msgs.message
+        if "اشترك فالقناة @" in msg_text:
+            channel_username = msg_text.split('@')[1].split()[0]  # استخراج اسم مستخدم القناة
             try:
-                channel_entity2 = await l313l.get_entity(channel_username.group(0))
-                await l313l(JoinChannelRequest(channel_entity2))
-                await event.edit("**᯽︙تم الانضمام إلى القناة بنجاح**")
+                entity = await l313l.get_entity(channel_username)
+                if entity:
+                    await l313l(JoinChannelRequest(entity.id))
+                    await event.edit(f"تم الانضمام إلى القناة: @{channel_username}")
+                else:
+                    await event.edit(f"لا يمكن العثور على القناة: @{channel_username}")
             except:
-                await event.edit("**᯽︙حدث خطأ أثناء الانضمام إلى القناة**")
+                await event.edit(f"فشل في الانضمام إلى القناة: @{channel_username}")
         else:
-            await event.edit("**᯽︙لم يتم العثور على اسم قناة في الرسالة**")
+            await event.edit("الرسالة لا تحتوي على رابط للقناة.")
+            msg2 = await l313l.get_messages(bot_username5, limit=1)
+            await msg2[0].click(text='اشتركت ✅')
             chs += 1
-            await event.edit(f"تم الانضمام في {chs} قناة")
-            except:
-                msg2 = await l313l.get_messages(bot_username5, limit=1)
-                await msg2[0].click(text='اشتركت ✅')
-                chs += 1
-                await event.edit(f"القناة رقم {chs}")
+            await event.edit(f"القناة رقم {chs}")
 
-        await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
+    await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
 
 @l313l.ar_cmd(pattern="راتب وعد(?:\s|$)([\s\S]*)")
 async def hussein(event):
