@@ -415,13 +415,13 @@ async def _(event):
 @l313l.on(admin_cmd(pattern="تجميع دعمكم"))
 async def _(event):
     await event.edit("**᯽︙سيتم تجميع النقاط من بوت العرب , قبل كل شي تأكد من انك قمت بالانضمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
-    channel_entity = await l313l.get_entity(bot_username5)
-    await l313l.send_message(bot_username5, '/start')
+    channel_entity = await l313l.get_entity(bot_username6)
+    await l313l.send_message(bot_username6, '/start')
     await asyncio.sleep(4)
-    msg0 = await l313l.get_messages(bot_username5, limit=1)
+    msg0 = await l313l.get_messages(bot_username6, limit=1)
     await msg0[0].click(1)
     await asyncio.sleep(4)
-    msg1 = await l313l.get_messages(bot_username5, limit=1)
+    msg1 = await l313l.get_messages(bot_username6, limit=1)
     await msg1[0].click(0)
 
     chs = 1
@@ -446,7 +446,7 @@ async def _(event):
                 await event.edit(f"فشل في الانضمام إلى القناة: @{channel_username}")
         else:
             await event.edit("الرسالة لا تحتوي على رابط للقناة.")
-            msg2 = await l313l.get_messages(bot_username5, limit=1)
+            msg2 = await l313l.get_messages(bot_username6, limit=1)
             await msg2[0].click(text='اشتركت ✅')
             chs += 1
             await event.edit(f"القناة رقم {chs}")
