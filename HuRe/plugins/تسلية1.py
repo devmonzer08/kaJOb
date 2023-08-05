@@ -38,7 +38,6 @@ async def _(event):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 14])
 
 
 @l313l.ar_cmd(
@@ -310,7 +309,7 @@ async def Hussein(event):
         if owner_id == l313l.uid:
             if event.message.message == "شيع الولد":
                 animation_interval = 4
-                animation_ttl = range(14)
+                animation_ttl = range(1)
                 animation_chars = [
                     "**بِسِمٍّ اللّٰه وَبِاَللَّهِ**",
                     "**أَشْهَد أَلَّا إِلَهَ إِلَّا اَللَّه وَحْدَهُ لَا شَرِيكَ لَه**",
@@ -319,5 +318,5 @@ async def Hussein(event):
                 ]
                 for i in animation_ttl:
                     await asyncio.sleep(animation_interval)
-                    await event.reply(animation_chars, reply_to=reply_msg)
+                    await event.reply(animation_chars[i % 14])
 
