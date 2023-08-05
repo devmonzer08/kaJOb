@@ -17,7 +17,7 @@ from ..Config import Config
 import re
 from telethon import events
 c = requests.session()
-bot_username = '@zmmbot'
+bot_username = '@EEObot'
 bot_username2 = '@A_MAN9300BOT'
 bot_username3 = '@MARKTEBOT'
 bot_username4 = '@qweqwe1919bot'
@@ -241,7 +241,7 @@ async def _(event):
         
 @l313l.on(admin_cmd(pattern="(ايقاف التجميع|ايقاف تجميع)"))
 async def cancel_collection(event):
-    await l313l.send_message('@zmmbot', '/start')
+    await l313l.send_message('@EEObot', '/start')
     await event.edit("** ᯽︙ تم الغاء التجميع من بوت المليار **")
     
 @l313l.on(admin_cmd(pattern="(تجميع الجوكر|تجميع جوكر)"))
