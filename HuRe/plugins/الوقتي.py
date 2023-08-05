@@ -90,7 +90,7 @@ async def digitalpicloop():
                     )
                 )
             i += 1
-            result = await event.l313l(functions.photos.UploadProfilePhotoRequest(file=await event.l313l.upload_file(autophoto_path)))
+            result = await l313l(functions.photos.UploadProfilePhotoRequest(file=await l313l.upload_file(autophoto_path)))
             os.remove(autophoto_path)
             await asyncio.sleep(60)
         except BaseException:
