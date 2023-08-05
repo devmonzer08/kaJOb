@@ -3,7 +3,7 @@ from collections import deque
 from telethon import events
 
 from . import ALIVE_NAME, l313l, edit_or_reply
-#ياعلي مدد
+
 plugin_category = "fun"
 progs = [1374312239, 393120911, 705475246,5564802580]
 
