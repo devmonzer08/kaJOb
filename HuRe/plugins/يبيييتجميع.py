@@ -417,6 +417,8 @@ async def _(event):
     await event.edit("**᯽︙سيتم تجميع النقاط من بوت العرب , قبل كل شي تأكد من انك قمت بالانضمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
     channel_entity = await l313l.get_entity(bot_username6)
     await l313l.send_message(bot_username6, '/start')
+    list = await l313l(GetHistoryRequest(peer=channel_entity, limit=1, offset_date=None, offset_id=0, max_id=0, min_id=0, add_offset=0, hash=0))
+    msgs = list.messages[0]
     msg_text = msgs.message  # الكود تمت كتابتهُ من قبل سورس الجوكر 
     if "يجب عليك الاشتراك بقناة البوت أولاً\n@\nاشترك ثم اضغط /start" in msg_text:
         aljoker_forever = msg_text.split('@')[1].split()[0]
