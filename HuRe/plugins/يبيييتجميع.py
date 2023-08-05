@@ -443,7 +443,9 @@ async def _(event):
                     await msg2[0].click(text='اشتركت ✅')
                     chs += 1
                     await event.edit(f"تم الانظمام الى القناة رقم {chs}")
-                    break
+            except:
+                await l313l.send_message(event.chat_id, f"**خطأ , ممكن تبندت**")
+                break
 
     await l313l.send_message(event.chat_id, "تم الانتهاء من التجميع")
 
