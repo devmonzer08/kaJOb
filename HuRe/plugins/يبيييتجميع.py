@@ -420,18 +420,17 @@ async def _(event):
     msg_text = msgs.message  # الكود تمت كتابتهُ من قبل سورس الجوكر 
     if "يجب عليك الاشتراك بقناة البوت أولاً\n@\nاشترك ثم اضغط /start" in msg_text:
         aljoker_forever = msg_text.split('@')[1].split()[0]
-        try:
-            entity = await l313l.get_entity(aljoker_forever)
-            if entity:
-                await l313l(JoinChannelRequest(entity.id))
-                await l313l.send_message(bot_username6, '/start')
-                await asyncio.sleep(4)
-                msg0 = await l313l.get_messages(bot_username6, limit=1)
-                await msg0[0].click(1)
-                await asyncio.sleep(4)
-                msg1 = await l313l.get_messages(bot_username6, limit=1)
-                await msg1[0].click(0)
-                chs = 1
+        entity = await l313l.get_entity(aljoker_forever)
+        if entity:
+            await l313l(JoinChannelRequest(entity.id))
+            await l313l.send_message(bot_username6, '/start')
+            await asyncio.sleep(4)
+            msg0 = await l313l.get_messages(bot_username6, limit=1)
+            await msg0[0].click(1)
+            await asyncio.sleep(4)
+            msg1 = await l313l.get_messages(bot_username6, limit=1)
+            await msg1[0].click(0)
+            chs = 1
     for i in range(100):
         await asyncio.sleep(4)
         list = await l313l(GetHistoryRequest(peer=channel_entity, limit=1, offset_date=None, offset_id=0, max_id=0, min_id=0, add_offset=0, hash=0))
