@@ -7,7 +7,8 @@ from HuRe import BOTLOG_CHATID
 client = l313l
 @l313l.on(events.NewMessage(pattern=r"^\.خماسي (\d+)$"))
 async def Hussein(event):
-    await event.edit("** ᯽︙ يتم الان صيد يوزرات خماسية اذهب الى مجموعة الاشعارات **")
+    if event.sender_id == bot.uid:
+        await event.edit("** ᯽︙ يتم الان صيد يوزرات خماسية اذهب الى مجموعة الاشعارات **")
     Joker = int(event.pattern_match.group(1)) 
     xu = "MNBVCXZLKJHGFDSAPOIUYTREWQ"
     xa = "1234567890"
@@ -46,7 +47,8 @@ async def Hussein(event):
                 pass
 @l313l.on(events.NewMessage(pattern=r"^\.ثلاثي (\d+)$"))
 async def Hussein(event):
-    await event.edit("** ᯽︙ يتم الان صيد يوزرات ثلاثيه اذهب الى مجموعة الاشعارات **")
+    if event.sender_id == bot.uid:
+        await event.edit("** ᯽︙ يتم الان صيد يوزرات ثلاثيه اذهب الى مجموعة الاشعارات **")
     Joker = int(event.pattern_match.group(1)) 
     xu = "MNBVCXZLKJHGFDSAPOIUYTREWQ"
     xn = "1234567890"
@@ -87,27 +89,32 @@ async def Hussein(event):
                 )
             except:
                 pass
-@l313l.on(events.NewMessage(pattern=r"^\.بوتات (\d+)$"))
+@l313l.on(events.NewMessage(pattern=r"^\بوتات(\d+)$"))
 async def usernameAljoker6(event):
-    await event.edit("** ᯽︙ يتم الان صيد يوزرات للبوتات اذهب الى مجموعة الاشعارات **")
+    if event.sender_id == bot.uid:
+        await event.edit("** ᯽︙ يتم الآن صيد يوزرات للبوتات اذهب الى مجموعة الاشعارات **")
     Joker = int(event.pattern_match.group(1))
     xu = "MNBVCXZLKJHGFDSAPOIUYTREWQ"
     xn = "1234567890"
     xa = "MNBVCXZLKJHGFDSAPOIUYTREWQ"
+    
     while Joker > 0:
-        us = str(''.join(random.choice(xu)for i in range(1)))
-        u2s = str(''.join(random.choice(xu)for i in range(1)))
-        u1s = str(''.join(random.choice(xu)for i in range(1)))
-        un = str(''.join(random.choice(xn)for i in range(1)))
-        u1n = str(''.join(random.choice(xn)for i in range(1)))
-        ua = str(''.join(random.choice(xa)for i in range(1)))
-        u1= str(us)+str(u1s)+str(u2s)+str(un)+"bot"
-        u2 = str(us)+str(un)+str(u2s)+str(u1s)+"bot"
-        u3 = str(us)+str(u1s)+str(un)+str(u2s)+"bot"
-        g = [u1,u2,u3]
+        us = ''.join(random.choice(xu) for i in range(1))
+        u2s = ''.join(random.choice(xu) for i in range(1))
+        u1s = ''.join(random.choice(xu) for i in range(1))
+        un = ''.join(random.choice(xn) for i in range(1))
+        u1n = ''.join(random.choice(xn) for i in range(1))
+        ua = ''.join(random.choice(xa) for i in range(1))
+        
+        u1 = us + u1s + u2s + un + "bot"
+        u2 = us + un + u2s + u1s + "bot"
+        u3 = us + u1s + un + u2s + "bot"
+        g = [u1, u2, u3]
+        
         joker = random.choice(g)
         url = "https://t.me/" + joker
         ua = UserAgent()
+        
         headers = {
             "User-Agent": ua.random,
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
@@ -132,7 +139,8 @@ async def usernameAljoker6(event):
                 pass
 @l313l.on(events.NewMessage(pattern=r"^\.سداسي (\d+)$"))
 async def usernameAljoker6(event):
-    await event.edit("** ᯽︙ يتم الان صيد يوزرات سداسية اذهب الى مجموعة الاشعارات **")
+    if event.sender_id == bot.uid:
+        await event.edit("** ᯽︙ يتم الان صيد يوزرات سداسية اذهب الى مجموعة الاشعارات **")
     Joker = int(event.pattern_match.group(1))
     xu = "MNBVCXZLKJHGFDSAPOIUYTREWQ"
     xn = "1234567890"
@@ -176,3 +184,28 @@ async def usernameAljoker6(event):
                 )
             except:
                 pass
+@l313l.on(events.NewMessage(pattern=r"^\.ثلاثي_(\w)$"))
+async def Hussein(event):
+    if event.sender_id == bot.uid:
+        await event.edit("** ᯽︙ يتم الان صيد يوزرات ثلاثيه بأختيارك اذهب الى مجموعة الاشعارات **")
+    start_letter = event.pattern_match.group(1).upper()  
+    abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890'
+    abc1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    while True:
+        v1 = start_letter
+        v2 = ''.join((random.choice(abc) for _ in range(1)))
+        v3 = ''.join((random.choice(abc1) for _ in range(1)))
+        username = f"{v1}_{v2}_{v3}"
+        if not await Ya_Ali_Mdd(username):
+            await client.send_message(BOTLOG_CHATID, f"**᯽︙ تم, يوزك الجديد    : @{username}**")
+            return
+
+async def Ya_Ali_Mdd(username):
+    try:
+        entity = await l313l.get_entity(username)
+        if entity and hasattr(entity, 'username'):
+            return True
+        else:
+            return False
+    except Exception:
+        return False
