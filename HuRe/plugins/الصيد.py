@@ -188,22 +188,22 @@ async def usernameAljoker6(event):
 async def Hussein(event):
     if event.sender_id == bot.uid:
         await event.edit("** ᯽︙ يتم الان صيد يوزرات ثلاثيه بأختيارك اذهب الى مجموعة الاشعارات **")
-    Joker = 10
-    start_letter = event.pattern_match.group(1).upper()  
-    abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890'
-    abc1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    aljoker_usernames = []
-    while Joker > 0:
-        v1 = start_letter
-        v2 = ''.join((random.choice(abc) for _ in range(1)))
-        v3 = ''.join((random.choice(abc1) for _ in range(1)))
-        username = f"{v1}_{v2}_{v3}"
-        if not await Ya_Ali_Mdd(username):
-            aljoker_usernames.append(username)
-            Joker -= 1
-    if aljoker_usernames:
-        usernames_text = "\n".join([f"@{username}" for username in aljoker_usernames])
-        await client.send_message(BOTLOG_CHATID, f"**᯽︙ تم إنشاء {len(aljoker_usernames)} يوزرات ثلاثيه جديدة:**\n\n{usernames_text}")
+        Joker = 10
+        start_letter = event.pattern_match.group(1).upper()  
+        abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890'
+        abc1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        aljoker_usernames = []
+        while Joker > 0:
+            v1 = start_letter
+            v2 = ''.join((random.choice(abc) for _ in range(1)))
+            v3 = ''.join((random.choice(abc1) for _ in range(1)))
+            username = f"{v1}_{v2}_{v3}"
+            if not await Ya_Ali_Mdd(username):
+                aljoker_usernames.append(username)
+                Joker -= 1
+        if aljoker_usernames:
+            usernames_text = "\n".join([f"@{username}" for username in aljoker_usernames])
+            await client.send_message(BOTLOG_CHATID, f"**᯽︙ تم إنشاء {len(aljoker_usernames)} يوزرات ثلاثيه جديدة:**\n\n{usernames_text}")
 
 async def Ya_Ali_Mdd(username):
     try:
