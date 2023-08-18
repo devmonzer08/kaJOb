@@ -89,7 +89,7 @@ async def Hussein(event):
                 )
             except:
                 pass
-@l313l.on(events.NewMessage(pattern=r"^\بوتات(\d+)$"))
+@l313l.on(events.NewMessage(pattern=r"^\.بوتات (\d+)$"))
 async def usernameAljoker6(event):
     if event.sender_id == bot.uid:
         await event.edit("** ᯽︙ يتم الآن صيد يوزرات للبوتات اذهب الى مجموعة الاشعارات **")
