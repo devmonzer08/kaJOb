@@ -270,7 +270,7 @@ async def stopspamrz(event):
         return await edit_delete(event, "**⌔∮ تم بنجاح ايقاف التكرار **")
     return await edit_delete(event, "**⌔∮ عذرا لم يتم تفعيل التكرار بالاصل**")
 #جميع الاكواد ادناه تمت كتابتها من قبل مطورين الجوكر ممنوع السرقة !
-async def aljoker_nshr(l313l, sleeptimet, chat, message, seconds):
+    async def aljoker_nshr(l313l, sleeptimet, chat, message, seconds):
     global yaAli
     yaAli = True
     while yaAli:
@@ -303,21 +303,21 @@ async def Hussein(event):
             )
         await asyncio.sleep(1)
     
-    async def aljoker_allnshr(l313l, sleeptimet, message):
-    global yaAli
-    yaAli = True
-    aljoker_chats = await l313l.get_dialogs()
-    while yaAli:
-        for chat in aljoker_chats:
-            if chat.is_group:
-                try:
-                    if message.media:
-                        await l313l.send_file(chat.id, message.media, caption=message.text)
-                    else:
-                        await l313l.send_message(chat.id, message.text)
-                except Exception as e:
-                    print(f"Error in sending message to chat {chat.id}: {e}")
-        await asyncio.sleep(sleeptimet)
+async def aljoker_allnshr(l313l, sleeptimet, message):
+global yaAli
+yaAli = True
+aljoker_chats = await l313l.get_dialogs()
+while yaAli:
+    for chat in aljoker_chats:
+        if chat.is_group:
+            try:
+                if message.media:
+                    await l313l.send_file(chat.id, message.media, caption=message.text)
+                else:
+                    await l313l.send_message(chat.id, message.text)
+            except Exception as e:
+                print(f"Error in sending message to chat {chat.id}: {e}")
+    await asyncio.sleep(sleeptimet)
 @l313l.ar_cmd(pattern="نشر_كروبات")
 async def Hussein(event):
     await event.delete()
