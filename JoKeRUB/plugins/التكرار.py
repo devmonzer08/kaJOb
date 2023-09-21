@@ -15,6 +15,7 @@ from ..helpers.utils import _catutils
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from . import BOTLOG, BOTLOG_CHATID
 yaAli = False
+client = l313l
 Mukrr = Config.MUKRR_ET or "مكرر"
 async def spam_function(event, JoKeRUB, l313l, sleeptimem, sleeptimet, DelaySpam=False):
 
