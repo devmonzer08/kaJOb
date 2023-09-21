@@ -7,6 +7,7 @@ from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from telethon.utils import get_display_name
 from JoKeRUB import l313l
+from telethon import events
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.tools import media_type
