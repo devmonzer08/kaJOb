@@ -1,1 +1,1 @@
-worker: bash l313l
+worker: python3 -m JoKeRUB
