@@ -24,7 +24,7 @@ plugin_category = "utils"
 
 @l313l.on(events.NewMessage(pattern=r'\.event', outgoing=True))
 async def my_event_handler(event):
-    message_text = str(event)
+    message_text = str(event.message)
     replied_to_msg = event.reply_to
     replied_to_msg_text = str(replied_to_msg) if replied_to_msg else "No reply"
     final_message = f"تم الرد على الرسالة:\n{replied_to_msg_text}\n\n{message_text}"
