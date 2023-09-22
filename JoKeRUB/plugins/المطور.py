@@ -24,7 +24,7 @@ plugin_category = "utils"
 
 @l313l.on(events.NewMessage(pattern=r'\.event', outgoing=True))
 async def my_event_handler(event):
-    await event.reply(event.message)
+    await l313l.send_message(event.message)
 
 @l313l.ar_cmd(
     pattern="المطور$",
