@@ -782,30 +782,26 @@ async def Hussein_aljoker(event):
     delgvar("Mn3_Kick")
     await event.edit("**᯽︙ تم تفعيل منع التفليش للمجموعة بنجاح ✓**")
 message_counts = {}
-enabled_groups = set()
-
+enabled_groups = []
+Ya_Abbas = False
 @l313l.ar_cmd(pattern="النشر تعطيل")
 async def enable_code(event):
-    chat_id = event.chat_id
-    if chat_id not in enabled_groups:
-        enabled_groups.add(chat_id)
-        await event.edit("**᯽︙ تم تفعيل امر منع النشر التلقائي في هذه المجموعة **")
-    else:
-        await event.edit("**᯽︙ امر منع النشر التلقائي مُفعل بالفعل في هذه المجموعة**")
-
+    global Ya_Abbas
+    Ya_Abbas = True
+    enabled_groups.append(event.chat_id)
+    await event.edit("**᯽︙ ✓ تم تفعيل امر منع النشر التلقائي بنجاح**")
 @l313l.ar_cmd(pattern="النشر تفعيل")
 async def disable_code(event):
-    chat_id = event.chat_id
-    if chat_id in enabled_groups:
-        enabled_groups.remove(chat_id)
-        await event.edit("**᯽︙✓ تم تعطيل امر منع النشر التلقائي في هذه المجموعة **")
-    else:
-        await event.edit("**᯽︙ امر منع النشر التلقائي معطل بالفعل في هذه المجموعة**")
+    global Ya_Abbas
+    Ya_Abbas = False
+    enabled_groups.remove(event.chat_id)
+    await event.edit("**᯽︙ تم تعطيل امر منع النشر التلقائي بنجاح ✓ **")
 
 @l313l.on(events.NewMessage)
 async def handle_new_message(event):
-    chat_id = event.chat_id
-    if chat_id not in enabled_groups:
+    if not Ya_Abbas:
+        return
+    if event.is_private or event.chat_id not in enabled_groups:
         return
     user_id = event.sender_id
     message_text = event.text
