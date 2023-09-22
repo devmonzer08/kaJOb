@@ -782,36 +782,30 @@ async def Hussein_aljoker(event):
     delgvar("Mn3_Kick")
     await event.edit("**᯽︙ تم تفعيل منع التفليش للمجموعة بنجاح ✓**")
 message_counts = {}
-active_chats = set()
-disabled_chats = set()
+enabled_groups = set()
+
 @l313l.ar_cmd(pattern="النشر تعطيل")
-async def Hussein(event):
+async def enable_code(event):
     chat_id = event.chat_id
-    if event.is_group:
-        if chat_id not in active_chats:
-            active_chats.add(chat_id)
-            disabled_chats.discard(chat_id)
-            await event.edit("**᯽︙✓ تم تفعيل امر منع النشر التلقائي **")
-        else:
-            await event.edit("**᯽︙ امر منع النشر التلقائي مُفعل بالفعل**")
+    if chat_id not in enabled_groups:
+        enabled_groups.add(chat_id)
+        await event.edit("**᯽︙ تم تفعيل امر منع النشر التلقائي في هذه المجموعة **")
+    else:
+        await event.edit("**᯽︙ امر منع النشر التلقائي مُفعل بالفعل في هذه المجموعة**")
 
 @l313l.ar_cmd(pattern="النشر تفعيل")
-async def Hussein(event):
+async def disable_code(event):
     chat_id = event.chat_id
-    if event.is_group:
-        if chat_id in active_chats:
-            active_chats.discard(chat_id)
-            disabled_chats.add(chat_id)
-            await event.edit("**᯽︙✓ تم تعطيل امر منع النشر التلقائي **")
-        else:
-            await event.edit("**᯽︙ امر منع النشر التلقائي معطل بالفعل **")
-
-from telethon.errors.rpcerrorlist import ChatAdminRequiredError
+    if chat_id in enabled_groups:
+        enabled_groups.remove(chat_id)
+        await event.edit("**᯽︙✓ تم تعطيل امر منع النشر التلقائي في هذه المجموعة **")
+    else:
+        await event.edit("**᯽︙ امر منع النشر التلقائي معطل بالفعل في هذه المجموعة**")
 
 @l313l.on(events.NewMessage)
-async def Hussein(event):
+async def handle_new_message(event):
     chat_id = event.chat_id
-    if chat_id in disabled_chats:
+    if chat_id not in enabled_groups:
         return
     user_id = event.sender_id
     message_text = event.text
