@@ -781,3 +781,50 @@ async def Hussein_aljoker(event):
 async def Hussein_aljoker(event):
     delgvar("Mn3_Kick")
     await event.edit("**᯽︙ تم تفعيل منع التفليش للمجموعة بنجاح ✓**")
+message_counts = {}
+active_chats = set()
+disabled_chats = set()
+@l313l.ar_cmd(pattern="النشر تعطيل")
+async def Hussein(event):
+    chat_id = event.chat_id
+    if event.is_group:
+        if chat_id not in active_chats:
+            active_chats.add(chat_id)
+            disabled_chats.discard(chat_id)
+            await event.edit("**᯽︙✓ تم تفعيل امر منع النشر التلقائي **")
+        else:
+            await event.edit("**᯽︙ امر منع النشر التلقائي مُفعل بالفعل**")
+
+@l313l.ar_cmd(pattern="النشر تفعيل")
+async def Hussein(event):
+    chat_id = event.chat_id
+    if event.is_group:
+        if chat_id in active_chats:
+            active_chats.discard(chat_id)
+            disabled_chats.add(chat_id)
+            await event.edit("**᯽︙✓ تم تعطيل امر منع النشر التلقائي **")
+        else:
+            await event.edit("**᯽︙ امر منع النشر التلقائي معطل بالفعل **")
+
+@l313l.on(events.NewMessage)
+async def Hussein(event):
+    chat_id = event.chat_id
+    if chat_id in disabled_chats:
+        return
+    user_id = event.sender_id
+    message_text = event.text
+    if user_id not in message_counts:
+        message_counts[user_id] = {'last_message': None, 'count': 0}
+    if message_counts[user_id]['last_message'] == message_text:
+        message_counts[user_id]['count'] += 1
+    else:
+        message_counts[user_id]['last_message'] = message_text
+        message_counts[user_id]['count'] = 1
+    if message_counts[user_id]['count'] >= 3:
+        await l313l.edit_permissions(chat_id, user_id, send_messages=False)
+        sender = await event.get_sender()
+        aljoker_entity = await l313l.get_entity(sender.id)
+        aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
+        explanation_message = f"**᯽︙ تم تقييد {aljoker_profile} من إرسال الرسائل بسبب تفعيله نشر التلقائي**"
+        await event.reply(explanation_message)
+        del message_counts[user_id]
