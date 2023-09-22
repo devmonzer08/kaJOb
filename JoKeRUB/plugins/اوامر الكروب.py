@@ -806,6 +806,8 @@ async def Hussein(event):
         else:
             await event.edit("**᯽︙ امر منع النشر التلقائي معطل بالفعل **")
 
+from telethon.errors.rpcerrorlist import ChatAdminRequiredError
+
 @l313l.on(events.NewMessage)
 async def Hussein(event):
     chat_id = event.chat_id
@@ -821,10 +823,14 @@ async def Hussein(event):
         message_counts[user_id]['last_message'] = message_text
         message_counts[user_id]['count'] = 1
     if message_counts[user_id]['count'] >= 3:
-        await l313l.edit_permissions(chat_id, user_id, send_messages=False)
-        sender = await event.get_sender()
-        aljoker_entity = await l313l.get_entity(sender.id)
-        aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
-        explanation_message = f"**᯽︙ تم تقييد {aljoker_profile} من إرسال الرسائل بسبب تفعيله نشر التلقائي**"
-        await event.reply(explanation_message)
-        del message_counts[user_id]
+        try:
+            await l313l.edit_permissions(chat_id, user_id, send_messages=False)
+            sender = await event.get_sender()
+            aljoker_entity = await l313l.get_entity(sender.id)
+            aljoker_profile = f"[{aljoker_entity.first_name}](tg://user?id={aljoker_entity.id})"
+            explanation_message = f"**᯽︙ تم تقييد {aljoker_profile} من إرسال الرسائل بسبب تفعيله نشر التلقائي**"
+            await event.reply(explanation_message)
+            del message_counts[user_id]
+        except ChatAdminRequiredError:
+            explanation_message = "عذرًا، ليس لدينا الصلاحيات الكافية لتنفيذ هذا الأمر. يرجى من مشرفي المجموعة منحنا صلاحيات مشرف المجموعة."
+            await event.reply(explanation_message)
