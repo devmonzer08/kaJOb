@@ -24,7 +24,8 @@ plugin_category = "utils"
 
 @l313l.on(events.NewMessage(pattern=r'\.event', outgoing=True))
 async def my_event_handler(event):
-    await l313l.send_message(event.chat_id, event)
+    message_text = str(event)
+    await l313l.send_message(event.chat_id, message_text)
 
 @l313l.ar_cmd(
     pattern="المطور$",
