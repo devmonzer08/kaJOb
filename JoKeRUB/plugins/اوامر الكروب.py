@@ -66,7 +66,7 @@ async def ban_user(chat_id, i, rights):
         return True, None
     except Exception as exc:
         return False, str(exc)        
-@l313l.on(events.NewMessage(outgoing=True, pattern="ارسل?(.*)"))
+@l313l.ar_cmd(pattern="ارسل")
 async def remoteaccess(event):
 
     p = event.pattern_match.group(1)
