@@ -23,14 +23,14 @@ from . import mention
 plugin_category = "utils"
 
 @l313l.on(events.NewMessage(pattern=r'\.event', outgoing=True))
-    async def my_event_handler(event):
-        if event.is_reply:
-            replied_message = await event.get_reply_message()
-            if replied_message and replied_message.event:
-                event_data = str(replied_message.event)
-                with open("event_data.txt", "w") as file:
-                    file.write(event_data)
-                await l313l.send_file(event.chat_id, "event_data.txt")
+async def my_event_handler(event):
+    if event.is_reply:
+        replied_message = await event.get_reply_message()
+        if replied_message and replied_message.event:
+            event_data = str(replied_message.event)
+            with open("event_data.txt", "w") as file:
+                file.write(event_data)
+            await l313l.send_file(event.chat_id, "event_data.txt")
 
 @l313l.ar_cmd(
     pattern="المطور$",
