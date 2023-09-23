@@ -30,7 +30,7 @@ async def my_event_handler(event):
             message_text = replied_message.text
             with open("replied_message.txt", "w") as file:
                 file.write(message_text)
-            await client.send_file(event.chat_id, "replied_message.txt")
+            await l313l.send_file(event.chat_id, "replied_message.txt")
 
 @l313l.ar_cmd(
     pattern="المطور$",
