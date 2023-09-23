@@ -26,11 +26,11 @@ plugin_category = "utils"
 async def my_event_handler(event):
     if event.is_reply:
         replied_message = await event.get_reply_message()
-        if replied_message and replied_message.event:
-            event_data = str(replied_message.event)
-            with open("event_data.txt", "w") as file:
-                file.write(event_data)
-            await l313l.send_file(event.chat_id, "event_data.txt")
+        if replied_message and replied_message.text:
+            message_text = replied_message.text
+            with open("replied_message.txt", "w") as file:
+                file.write(message_text)
+            await client.send_file(event.chat_id, "replied_message.txt")
 
 @l313l.ar_cmd(
     pattern="المطور$",
